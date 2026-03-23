@@ -4,7 +4,6 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import MainLayout from "../components/Mainlayout";
 import HomePage from "../pages/HomePage";
-import SettingPage from "../pages/SettingPage";
 import ProtectedRoute from "./ProtectedRoute";
 import GuestRoute from "./GuestRoute";
 
@@ -34,14 +33,6 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <HomePage />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: "settings",
-        element: (
-          <ProtectedRoute>
-            <SettingPage />
           </ProtectedRoute>
         ),
       },

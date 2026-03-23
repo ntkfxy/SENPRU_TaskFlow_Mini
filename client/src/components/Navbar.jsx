@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import useAuthStore from "../store/useAuthStore"; // แก้ไข import ให้ถูกต้อง
 
 const Navbar = () => {
-  const { logOut, authUser } = useAuthStore();
+ const { logout, authUser } = useAuthStore();
 
   return (
     // ปรับพื้นหลังให้ดูโปร่งแสง (Backdrop blur) เข้ากับธีมสว่าง/พาสเทล
@@ -38,7 +38,7 @@ const Navbar = () => {
             </div>
 
             <button
-              onClick={logOut}
+              onClick={logout}
               className="btn btn-ghost text-base-content/70 hover:text-error hover:bg-error/10 gap-2 rounded-full transition-colors"
             >
               <LogOut size={20} />

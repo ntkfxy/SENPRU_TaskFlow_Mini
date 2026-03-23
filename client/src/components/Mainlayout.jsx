@@ -17,9 +17,7 @@ const MainLayout = () => {
       {/* Main Content */}
       <main className="flex-1 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
-          <div className="backdrop-blur-xl bg-white/30 border border-white/30 rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8">
-            <Outlet />
-          </div>
+          <Outlet />
         </div>
       </main>
     </div>

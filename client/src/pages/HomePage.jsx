@@ -161,7 +161,7 @@ const HomePage = () => {
             {filteredTasks.map((task) => (
               <div
                 key={task._id}
-                className="flex flex-col backdrop-blur-xl bg-white/40 border border-white/30 rounded-2xl shadow-lg p-5 hover:translate-y-[-4px] transition-all duration-300 group"
+                className="flex flex-col bg-white border border-pink-100 rounded-2xl shadow-sm hover:shadow-xl hover:translate-y-[-4px] transition-all duration-300 group p-5"
               >
                 <div className="flex justify-between items-start mb-3">
                   <span

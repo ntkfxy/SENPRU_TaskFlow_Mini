@@ -1,5 +1,5 @@
 import { Navigate } from "react-router-dom";
-import { useAuthStore } from "../store/useAuthStore";
+import useAuthStore from "../store/useAuthStore";
 
 const GuestRoute = ({ children }) => {
   const { authUser } = useAuthStore();

@@ -4,20 +4,24 @@ import NavBar from "./Navbar";
 
 const MainLayout = () => {
   return (
-    <div className="min-h-screen flex flex-col bg-[#0f1218] text-slate-200">
+    <div className="min-h-screen flex flex-col relative overflow-hidden bg-gradient-to-br from-pink-100 via-purple-100 to-sky-100 text-purple-900">
+      {/* Magical background blobs */}
+      <div className="absolute w-96 h-96 bg-pink-300/30 blur-3xl rounded-full top-[-100px] left-[-100px] animate-pulse" />
+      <div className="absolute w-96 h-96 bg-purple-300/30 blur-3xl rounded-full bottom-[-120px] right-[-120px] animate-pulse" />
 
       {/* Header */}
-      <header className="sticky top-0 z-50 bg-[#0f1218] border-b border-slate-800">
+      <header className="sticky top-0 z-50 backdrop-blur-xl bg-white/40 border-b border-white/30 shadow-sm">
         <NavBar />
       </header>
 
       {/* Main Content */}
-      <main className="flex-1 w-full bg-[#0f1218]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 lg:py-8">
-          <Outlet />
+      <main className="flex-1 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-10">
+          <div className="backdrop-blur-xl bg-white/30 border border-white/30 rounded-2xl shadow-xl p-4 sm:p-6 lg:p-8">
+            <Outlet />
+          </div>
         </div>
       </main>
-
     </div>
   );
 };

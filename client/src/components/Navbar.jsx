@@ -1,23 +1,27 @@
 import React from "react";
-import { Settings, MessageSquare, User, LogOut } from "lucide-react";
+import { LogOut, CheckCircle, User } from "lucide-react";
 import { Link } from "react-router-dom";
-import { useAuthStore } from "../store/useAuthStore";
+import useAuthStore from "../store/useAuthStore"; // แก้ไข import ให้ถูกต้อง
 
 const Navbar = () => {
   const { logOut, authUser } = useAuthStore();
 
   return (
-    <div className="navbar bg-transparent px-4 sm:px-6 lg:px-8">
+    // ปรับพื้นหลังให้ดูโปร่งแสง (Backdrop blur) เข้ากับธีมสว่าง/พาสเทล
+    <div className="navbar bg-base-100/80 backdrop-blur-md px-4 sm:px-6 lg:px-8 sticky top-0 z-50 border-b border-base-200">
       {/* Logo */}
       <div className="flex-1">
         <Link
           to="/home"
           className="btn btn-ghost hover:bg-transparent normal-case text-xl gap-3 px-0"
         >
-          <div className="p-2 bg-slate-800/50 rounded-lg border border-slate-700/50">
-            <MessageSquare className="text-[#ff7e5f]" size={24} />
+          <div className="p-2 bg-primary/10 rounded-xl border border-primary/20 shadow-sm">
+            <CheckCircle className="text-primary" size={24} />
           </div>
-          <span className="font-bold text-white">SE Chat</span>
+          {/* เปลี่ยนชื่อแอปให้ตรงกับโปรเจกต์ */}
+          <span className="font-extrabold text-base-content tracking-tight">
+            Magic Tasks ✨
+          </span>
         </Link>
       </div>
 
@@ -25,61 +29,36 @@ const Navbar = () => {
       <div className="flex-none gap-1 sm:gap-2 flex items-center">
         {authUser ? (
           <>
-            <Link
-              to="/settings"
-              className="btn btn-ghost text-slate-400 hover:text-white hover:bg-slate-800 gap-2"
-            >
-              <Settings size={20} />
-              <span className="hidden sm:inline font-normal">Settings</span>
-            </Link>
-
-            <Link
-              to="/profile"
-              className="btn btn-ghost text-slate-400 hover:text-white hover:bg-slate-800 gap-2"
-            >
-              <User size={20} />
-              <span className="hidden sm:inline font-normal">
-                Profile
+            {/* โชว์ชื่อคนล็อกอินนิดนึง จะได้ดูสมบูรณ์ */}
+            <div className="hidden sm:flex items-center gap-2 mr-2 px-3 py-1.5 bg-base-200 rounded-full border border-base-300">
+              <User size={16} className="text-primary" />
+              <span className="text-sm font-semibold text-base-content/80">
+                {authUser.fullName || "User"}
               </span>
-            </Link>
+            </div>
 
             <button
               onClick={logOut}
-              className="btn btn-ghost text-slate-400 hover:text-white hover:bg-slate-800 gap-2"
+              className="btn btn-ghost text-base-content/70 hover:text-error hover:bg-error/10 gap-2 rounded-full transition-colors"
             >
               <LogOut size={20} />
-              <span className="hidden sm:inline font-normal">Logout</span>
+              <span className="hidden sm:inline font-bold">Logout</span>
             </button>
           </>
         ) : (
-          <div className="dropdown dropdown-end">
-            <div
-              tabIndex={0}
-              role="button"
-              className="btn btn-ghost text-slate-400 hover:text-white hover:bg-slate-800 gap-2"
+          <div className="flex items-center gap-2">
+            <Link
+              to="/login"
+              className="btn btn-ghost text-base-content/70 hover:text-primary hover:bg-primary/10 rounded-full font-bold"
             >
-              <Settings size={20} />
-              <span className="hidden sm:inline font-normal">Menu</span>
-            </div>
-
-            <ul className="dropdown-content z-[1] menu p-2 shadow bg-slate-800 border border-slate-700 rounded-box w-52 mt-4 text-slate-300">
-              <li>
-                <Link
-                  to="/login"
-                  className="hover:text-white hover:bg-slate-700"
-                >
-                  Login
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/register"
-                  className="hover:text-white hover:bg-slate-700"
-                >
-                  Register
-                </Link>
-              </li>
-            </ul>
+              Login
+            </Link>
+            <Link
+              to="/register"
+              className="btn btn-primary rounded-full font-bold shadow-md shadow-primary/20"
+            >
+              Register
+            </Link>
           </div>
         )}
       </div>

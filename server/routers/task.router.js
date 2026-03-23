@@ -10,7 +10,7 @@ const { protectedRoute } = require("../middlewares/auth.middleware");
 
 router.get("/", protectedRoute, getTasks);
 router.post("/", protectedRoute, createTask);
-router.post("/:id", protectedRoute, updateTask);
-router.post("/:id", protectedRoute, deleteTask);
+router.put("/:id", protectedRoute, updateTask);
+router.delete("/:id", protectedRoute, deleteTask);
 
 module.exports = router;

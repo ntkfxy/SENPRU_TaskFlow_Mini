@@ -5,8 +5,6 @@ import Register from "../pages/Register";
 import MainLayout from "../components/Mainlayout";
 import HomePage from "../pages/HomePage";
 import SettingPage from "../pages/SettingPage";
-import ProfilePage from "../pages/ProfilePage";
-import ChatPage from "../pages/ChatPage";
 import ProtectedRoute from "./ProtectedRoute";
 import GuestRoute from "./GuestRoute";
 
@@ -44,22 +42,6 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <SettingPage />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: "profile",
-        element: (
-          <ProtectedRoute>
-            <ProfilePage />
-          </ProtectedRoute>
-        ),
-      },
-      {
-        path: "chat",
-        element: (
-          <ProtectedRoute>
-            <ChatPage />
           </ProtectedRoute>
         ),
       },

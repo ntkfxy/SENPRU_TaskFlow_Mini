@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { MessageSquare, Eye, EyeOff, Loader2 } from "lucide-react";
 import toast from "react-hot-toast";
-import { useAuthStore } from "../store/useAuthStore";
+import useAuthStore from "../store/useAuthStore";
 
 export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
@@ -26,43 +26,45 @@ export default function Login() {
 
     return true;
   };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const success = validateForm();
     if (success === true) login(formData);
   };
+
   return (
-    <div className="min-h-[100dvh] bg-[#0f1218] flex relative overflow-hidden font-sans selection:bg-[#ff7e5f] selection:text-white">
-      {/* ========================================= */}
-      {/* ส่วนที่ 1: ส่วนซ้าย (แบบฟอร์ม Login)         */}
-      {/* ========================================= */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-center items-center px-6 sm:px-10 md:px-12 relative z-10">
-        <div className="w-full max-w-[360px] sm:max-w-[400px]">
+    <div className="min-h-[100dvh] flex relative overflow-hidden font-sans bg-gradient-to-br from-pink-200 via-purple-200 to-sky-200">
+      {/* Magical background blobs */}
+      <div className="absolute w-72 h-72 bg-pink-300/40 blur-3xl rounded-full top-10 left-10 animate-pulse" />
+      <div className="absolute w-72 h-72 bg-purple-300/40 blur-3xl rounded-full bottom-10 right-10 animate-pulse" />
+
+      {/* LEFT: FORM */}
+      <div className="w-full lg:w-1/2 flex flex-col justify-center items-center px-6 relative z-10">
+        <div className="w-full max-w-md backdrop-blur-xl bg-white/40 border border-white/30 rounded-3xl shadow-2xl p-8">
           {/* Logo */}
-          <div className="flex justify-center mb-6 sm:mb-8">
-            <div className="p-3 sm:p-4 bg-slate-800/50 rounded-xl sm:rounded-2xl border border-slate-700/50 shadow-xl shadow-black/20">
-              <MessageSquare className="text-[#ff7e5f] w-8 h-8 sm:w-10 sm:h-10" />
+          <div className="flex justify-center mb-6">
+            <div className="p-4 bg-white/50 rounded-2xl shadow-md border border-white/40">
+              <MessageSquare className="text-pink-500 w-10 h-10" />
             </div>
           </div>
 
           {/* Title */}
-          <div className="text-center mb-8 sm:mb-10">
-            <h1 className="text-2xl sm:text-3xl font-bold text-white mb-2 sm:mb-3">
-              Welcome Back
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold text-purple-700 mb-2">
+              Welcome Back ✨
             </h1>
-            <p className="text-sm sm:text-base text-slate-500">
-              Sign in to your account
+            <p className="text-sm text-purple-500">
+              Sign in to your magical account
             </p>
           </div>
 
           {/* Form */}
-          <form className="space-y-4 sm:space-y-6" onSubmit={handleSubmit}>
-            {/* Input Email */}
-            <div className="form-control w-full flex flex-col">
-              <label className="label pb-1 sm:pb-2">
-                <span className="label-text text-xs sm:text-sm font-bold text-slate-400">
-                  Email
-                </span>
+          <form className="space-y-5" onSubmit={handleSubmit}>
+            {/* Email */}
+            <div>
+              <label className="text-sm font-semibold text-purple-600">
+                Email
               </label>
               <input
                 type="email"
@@ -71,18 +73,16 @@ export default function Login() {
                 onChange={(e) =>
                   setFormData({ ...formData, email: e.target.value })
                 }
-                className="input input-bordered w-full bg-slate-800/50 border border-slate-700 rounded-lg sm:rounded-xl focus:border-[#ff7e5f] focus:outline-none focus:ring-1 focus:ring-[#ff7e5f] text-slate-200 placeholder:text-slate-600 pl-4 h-11 sm:h-12 text-sm sm:text-base transition-all duration-200"
+                className="w-full mt-1 px-4 h-12 rounded-xl bg-white/60 border border-white/40 focus:outline-none focus:ring-2 focus:ring-pink-400 text-purple-800 placeholder-purple-400"
               />
             </div>
 
-            {/* Input Password */}
-            <div className="form-control w-full flex flex-col">
-              <label className="label pb-1 sm:pb-2">
-                <span className="label-text text-xs sm:text-sm font-bold text-slate-400">
-                  Password
-                </span>
+            {/* Password */}
+            <div>
+              <label className="text-sm font-semibold text-purple-600">
+                Password
               </label>
-              <div className="relative group">
+              <div className="relative mt-1">
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="••••••••"
@@ -90,44 +90,40 @@ export default function Login() {
                   onChange={(e) =>
                     setFormData({ ...formData, password: e.target.value })
                   }
-                  className="input input-bordered w-full bg-slate-800/50 border border-slate-700 rounded-lg sm:rounded-xl focus:border-[#ff7e5f] focus:outline-none focus:ring-1 focus:ring-[#ff7e5f] text-slate-200 placeholder:text-slate-600 pl-4 pr-10 h-11 sm:h-12 text-sm sm:text-base transition-all duration-200"
+                  className="w-full px-4 pr-10 h-12 rounded-xl bg-white/60 border border-white/40 focus:outline-none focus:ring-2 focus:ring-pink-400 text-purple-800 placeholder-purple-400"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors p-1"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-purple-500"
                 >
-                  {showPassword ? (
-                    <Eye size={18} className="sm:w-5 sm:h-5" />
-                  ) : (
-                    <EyeOff size={18} className="sm:w-5 sm:h-5" />
-                  )}
+                  {showPassword ? <Eye size={18} /> : <EyeOff size={18} />}
                 </button>
               </div>
             </div>
 
-            {/* Submit Button */}
+            {/* Button */}
             <button
               type="submit"
-              className="w-full bg-[#ff7e5f] hover:bg-[#ff6b4a] rounded-lg sm:rounded-xl border-none text-white text-sm sm:text-base font-medium mt-2 sm:mt-4 h-11 sm:h-12 flex items-center justify-center shadow-lg shadow-[#ff7e5f]/20 transition-all hover:scale-[1.01]"
+              className="w-full h-12 rounded-xl bg-gradient-to-r from-pink-400 to-purple-500 text-white font-semibold shadow-lg hover:scale-[1.02] transition flex items-center justify-center gap-2"
             >
               {isLoggingIn ? (
                 <>
-                  <Loader2 className="size-5 animate-spin" />
-                  Loading....
+                  <Loader2 className="animate-spin w-5 h-5" />
+                  Loading...
                 </>
               ) : (
-                "Create Account"
+                "Login ✨"
               )}
             </button>
           </form>
 
-          {/* Footer Link */}
-          <p className="text-center text-slate-500 mt-6 sm:mt-8 text-xs sm:text-sm">
+          {/* Footer */}
+          <p className="text-center text-sm text-purple-500 mt-6">
             Don't have an account?{" "}
             <a
               href="/register"
-              className="text-[#ff7e5f] hover:text-[#ff9d85] hover:underline font-medium transition-colors"
+              className="text-pink-500 font-semibold hover:underline"
             >
               Create account
             </a>
@@ -135,30 +131,24 @@ export default function Login() {
         </div>
       </div>
 
-      {/* ========================================= */}
-      {/* ส่วนที่ 2: ส่วนขวา (Hero Grid Section)       */}
-      {/* ========================================= */}
-      <div className="hidden lg:flex w-1/2 bg-[#13161c] relative flex-col justify-center items-center p-8 xl:p-12">
-        <div className="w-full max-w-[240px] sm:max-w-[320px] xl:max-w-[400px] grid grid-cols-3 gap-3 sm:gap-4 xl:gap-5 mb-8 sm:mb-12 xl:mb-16 opacity-100">
+      {/* RIGHT: MAGIC PANEL */}
+      <div className="hidden lg:flex w-1/2 items-center justify-center relative">
+        <div className="grid grid-cols-3 gap-4">
           {[...Array(9)].map((_, i) => (
             <div
               key={i}
-              className="w-full aspect-square bg-[#ff7e5f] rounded-lg sm:rounded-xl xl:rounded-2xl shadow-[0_0_10px_rgba(255,126,95,0.3)] sm:shadow-[0_0_15px_rgba(255,126,95,0.3)] animate-pulse"
-              style={{
-                animationDelay: `${i * 0.2}s`,
-                animationDuration: '2s'
-              }}
-            ></div>
+              className="w-24 h-24 rounded-2xl bg-gradient-to-br from-pink-300 to-purple-300 shadow-lg animate-pulse"
+              style={{ animationDelay: `${i * 0.15}s` }}
+            />
           ))}
         </div>
 
-        <div className="text-center relative z-10 max-w-sm xl:max-w-md px-4">
-          <h2 className="text-xl xl:text-2xl font-bold text-white mb-2 xl:mb-3">
-            Welcome back!
+        <div className="absolute bottom-10 text-center px-6">
+          <h2 className="text-2xl font-bold text-purple-700 mb-2">
+            Friendship is Magic 🌈
           </h2>
-          <p className="text-sm xl:text-base text-slate-500 leading-relaxed">
-            Sign in to continue your conversations and catch up with your
-            messages.
+          <p className="text-purple-500 text-sm max-w-sm">
+            Enter your account and continue your magical journey with friends.
           </p>
         </div>
       </div>
